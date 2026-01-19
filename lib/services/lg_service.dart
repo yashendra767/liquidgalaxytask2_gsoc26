@@ -193,6 +193,8 @@ class LgService {
 
   //city kml self created
   Future<void> sendLucknowKml() async {
+    const int height = 4000;
+
     String kml = '''<?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns="http://www.opengis.net/kml/2.2">
 <Document>
@@ -205,26 +207,25 @@ class LgService {
         <name>Lucknow Zone</name>
         <styleUrl>#polyStyle</styleUrl>
         <Polygon>
-            <tessellate>1</tessellate>
-            <altitudeMode>clampToGround</altitudeMode>
-            <outerBoundaryIs>
+            <extrude>1</extrude> <tessellate>1</tessellate>
+            <altitudeMode>relativeToGround</altitudeMode> <outerBoundaryIs>
                 <LinearRing>
                     <coordinates>
-                        80.957,26.990,0 80.927,27.000,0 80.905,27.003,0 80.878,27.004,0 
-                        80.864,26.992,0 80.849,26.975,0 80.836,26.957,0 80.829,26.945,0 
-                        80.826,26.921,0 80.818,26.877,0 80.806,26.865,0 80.798,26.842,0 
-                        80.797,26.832,0 80.805,26.807,0 80.817,26.782,0 80.833,26.749,0 
-                        80.835,26.731,0 80.848,26.725,0 80.859,26.722,0 80.867,26.718,0 
-                        80.878,26.720,0 80.890,26.723,0 80.901,26.722,0 80.914,26.724,0 
-                        80.925,26.726,0 80.937,26.727,0 80.949,26.725,0 80.966,26.726,0 
-                        80.983,26.730,0 81.006,26.743,0 81.018,26.754,0 81.038,26.770,0 
-                        81.048,26.779,0 81.056,26.789,0 81.065,26.805,0 81.067,26.826,0 
-                        81.070,26.841,0 81.078,26.854,0 81.083,26.869,0 81.083,26.882,0 
-                        81.076,26.901,0 81.069,26.921,0 81.067,26.946,0 81.067,26.961,0 
-                        81.071,26.968,0 81.073,26.973,0 81.065,26.978,0 81.051,26.979,0 
-                        81.039,26.986,0 81.024,26.993,0 81.016,26.995,0 81.011,27.004,0 
-                        81.006,27.011,0 80.999,27.017,0 80.992,27.014,0 80.990,27.004,0 
-                        80.987,27.000,0 80.978,26.996,0 80.972,26.992,0 80.957,26.990,0 
+                        80.957,26.990,$height 80.927,27.000,$height 80.905,27.003,$height 80.878,27.004,$height 
+                        80.864,26.992,$height 80.849,26.975,$height 80.836,26.957,$height 80.829,26.945,$height 
+                        80.826,26.921,$height 80.818,26.877,$height 80.806,26.865,$height 80.798,26.842,$height 
+                        80.797,26.832,$height 80.805,26.807,$height 80.817,26.782,$height 80.833,26.749,$height 
+                        80.835,26.731,$height 80.848,26.725,$height 80.859,26.722,$height 80.867,26.718,$height 
+                        80.878,26.720,$height 80.890,26.723,$height 80.901,26.722,$height 80.914,26.724,$height 
+                        80.925,26.726,$height 80.937,26.727,$height 80.949,26.725,$height 80.966,26.726,$height 
+                        80.983,26.730,$height 81.006,26.743,$height 81.018,26.754,$height 81.038,26.770,$height 
+                        81.048,26.779,$height 81.056,26.789,$height 81.065,26.805,$height 81.067,26.826,$height 
+                        81.070,26.841,$height 81.078,26.854,$height 81.083,26.869,$height 81.083,26.882,$height 
+                        81.076,26.901,$height 81.069,26.921,$height 81.067,26.946,$height 81.067,26.961,$height 
+                        81.071,26.968,$height 81.073,26.973,$height 81.065,26.978,$height 81.051,26.979,$height 
+                        81.039,26.986,$height 81.024,26.993,$height 81.016,26.995,$height 81.011,27.004,$height 
+                        81.006,27.011,$height 80.999,27.017,$height 80.992,27.014,$height 80.990,27.004,$height 
+                        80.987,27.000,$height 80.978,26.996,$height 80.972,26.992,$height 80.957,26.990,$height 
                     </coordinates>
                 </LinearRing>
             </outerBoundaryIs>
@@ -234,7 +235,15 @@ class LgService {
 </kml>''';
 
     await uploadKml(kml, 'lucknow.kml');
-    await flyTo('<LookAt><longitude>80.92</longitude><latitude>26.88</latitude><range>60000</range><tilt>0</tilt><heading>0</heading><altitudeMode>relativeToGround</altitudeMode></LookAt>');
+
+    await flyTo('<LookAt>'
+        '<longitude>80.92</longitude>'
+        '<latitude>26.88</latitude>'
+        '<range>65000</range>'
+        '<tilt>60</tilt>'
+        '<heading>0</heading>'
+        '<altitudeMode>relativeToGround</altitudeMode>'
+        '</LookAt>');
   }
 
   //US major cities kml self created
